@@ -5,7 +5,6 @@ export class Input {
         this.keys = [];
         window.addEventListener("keydown", (e: KeyboardEvent) => {
             if (e.repeat) return;
-            console.log(e.code)
             if (
                 (
                     e.code === "KeyR" ||
@@ -24,7 +23,6 @@ export class Input {
                 this.keys.push(e.code);
             }
         });
-
         window.addEventListener("keyup", (e: KeyboardEvent) => {
             if (this.keys.includes(e.code)) {
                 this.keys.splice(this.keys.indexOf(e.code), 1);

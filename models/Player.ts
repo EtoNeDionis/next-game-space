@@ -60,6 +60,10 @@ export class Player {
         this.reloadTimer = 0
         this.health = 3
         this.markedForDeletion = false
+
+        window.addEventListener("click", () => {
+            this.shoot()
+        })
     }
 
     update(keys: string[]) {
@@ -90,15 +94,7 @@ export class Player {
             } else if (key === "Space") {
                  this.reloadTimer++
 
-                if (this.isShootingAvailable) {
-
-                    this.shoot();
-                    this.isShootingAvailable = false;
-
-                    setTimeout(() => {
-                        this.isShootingAvailable = true;
-                    }, (1 / this.shootsPerSecond) * 1000);
-                }
+                    this.shoot()
             }
         });
         if (keys.indexOf("KeyA") === -1 && keys.indexOf("KeyD") === -1 &&
@@ -146,22 +142,31 @@ export class Player {
     }
 
     shoot() {
-        const newSound = new Audio()
-        newSound.src = this.shootSound.src
-        newSound.volume = .01
-        newSound.play()
-        this.projectiles.push(
-            new PlayerProjectile({
-                position: {
-                    x: this.position.x + this.width / 2,
-                    y: this.position.y
-                }, v: {
-                    x: 0,
-                    y: -3
+        if (this.isShootingAvailable) {
+
+            const newSound = new Audio()
+            newSound.src = this.shootSound.src
+            newSound.volume = .01
+            newSound.play()
+            this.projectiles.push(
+                new PlayerProjectile({
+                    position: {
+                        x: this.position.x + this.width / 2,
+                        y: this.position.y
+                    }, v: {
+                        x: 0,
+                        y: -3
+                    }
                 }
-            }
-            )
-        );
+                )
+            );
+            this.isShootingAvailable = false;
+
+            setTimeout(() => {
+                this.isShootingAvailable = true;
+            }, (1 / this.shootsPerSecond) * 1000);
+        }
+      
     }
 
     takeDamage() {
