@@ -16,8 +16,9 @@ export class Enemy {
 
         this.image = new Image();
         this.image.src = imgEnemy.src;
-        this.image.height = imgEnemy.height
-        this.image.width = imgEnemy.width
+        const scope = innerWidth * .0008
+        this.image.height = imgEnemy.height * scope
+        this.image.width = imgEnemy.width * scope
 
         const aspectRatio = 1;
         this.width = this.image.width * aspectRatio;

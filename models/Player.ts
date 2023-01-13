@@ -74,16 +74,16 @@ export class Player {
         this.v = { x: 0, y: 0 };
 
         keys.forEach((key) => {
-            if (key === "KeyD" && this.position.x + this.width <= gameSettings.canvas!.width) {
+            if ((key === "KeyD" || key === "ArrowRight") && this.position.x + this.width <= gameSettings.canvas!.width) {
                 this.v.x = 1;
                 this.rotateDeg = (30 * Math.PI) / 180;
-            } else if (key === "KeyA" && this.position.x >= 0) {
+            } else if ((key === "KeyA" || key === "ArrowLeft") && this.position.x >= 0) {
                 this.v.x = -1;
                 this.rotateDeg = (-30 * Math.PI) / 180;
-            } else if (key === "KeyW" && this.position.y >= 0) {
+            } else if ((key === "KeyW" || key === "ArrowUp") && this.position.y >= 0) {
                 this.v.y = -0.5;
             } else if (
-                key === "KeyS" &&
+                (key === "KeyS" || key === "ArrowDown") &&
                 this.position.y + this.height <= gameSettings.canvas!.height
             ) {
                 this.v.y = 0.5;
@@ -101,7 +101,8 @@ export class Player {
                 }
             }
         });
-        if (keys.indexOf("KeyA") === -1 && keys.indexOf("KeyD") === -1) {
+        if (keys.indexOf("KeyA") === -1 && keys.indexOf("KeyD") === -1 &&
+            keys.indexOf("ArrowLeft") === -1 && keys.indexOf("ArrowRight") === -1) {
             this.rotateDeg = 0;
         }
 

@@ -2,6 +2,7 @@ import { gameSettings, IPosition, IV } from ".";
 import { Enemy } from "./Enemy";
 import { Particle } from "./Particle";
 import { Player } from "./Player";
+import imgEnemy from "../public/enemy.png"
 
 export class EnemyGroup {
     enemies: Enemy[];
@@ -16,11 +17,14 @@ export class EnemyGroup {
         this.v = { x: 1, y: 0 };
         this.enemies = [];
 
+        const scope = innerWidth * .0008
+
+
         const columns = Math.floor(Math.random() * 2 + 4);
         const rows = Math.floor(Math.random() * 5 + 3);
         for (let i = 0; i < columns; i++) {
             for (let j = 0; j < rows; j++) {
-                this.enemies.push(new Enemy({ x: i * 31, y: j * 39 }, player));
+                this.enemies.push(new Enemy({ x: i * imgEnemy.width * scope, y: j * imgEnemy.height * scope }, player));
             }
         }
 

@@ -5,9 +5,8 @@
     "\\models\\Projectiles",
     "\\pages",
     "\\public",
-    "\\public\\sounds",
     "\\styles"
   ],
-  "SelectedNode": "\\models\\Player.ts",
+  "SelectedNode": "\\pages\\index.tsx",
   "PreviewInSolutionExplorer": false
 }
